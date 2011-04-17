@@ -1,10 +1,15 @@
+:javascript 
+  jQuery(function() {
+    jQuery('')
+  });
+
 .list.stream-item
   .stream-item-content.tweet.stream-tweet
     .tweet-image
       %img.tweet-profile-image{:src => "images/categories/#{list.category.icon_filename}", :width => 48, :height => 48}
     .tweet-content
       .tweet-row
-        %span.list-title.tweet-user-name= link_to list[:name], "lists/#{list[:name]}", :class => 'tweet-screen-name user-profile-link'
+        %a.list-title.tweet-user-name{:id => "list-#{list.id}-link"}= link_to list.name, list, :class => 'tweet-screen-name user-profile-link'
         %span.tweet-full-name= list.category.pretty_name
       .tweet-row
         .list-description.tweet-text= list[:description]
