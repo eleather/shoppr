@@ -1,6 +1,14 @@
-:javascript 
+:javascript
   jQuery(function() {
-    replace_right_content_with_ajax_complete('#list-#{list.id}-link');
+    jQuery('#list-#{list.id}-link')
+      .bind('click', function() {
+        alert("Hello");
+        jQuery('#list-#{list.id}-details').html('Details!');
+      })
+      .bind("ajax:complete", function(et, e) {
+        alert(e.responseText);
+        jQuery('#list-#{list.id}-details').html(e.responseText);
+      });
   });
 
 .list.stream-item
@@ -9,10 +17,12 @@
       %img.tweet-profile-image{:src => "images/categories/#{list.category.icon_filename}", :width => 48, :height => 48}
     .tweet-content
       .tweet-row
-        %a.list-title.tweet-user-name= link_to list.name, list, :id => "list-#{list.id}-link", :class => 'tweet-screen-name user-profile-link', :remote => true
+        %span.list-title.tweet-user-name= link_to list.name, list, :id => "list-#{list.id}-link", :class => 'tweet-screen-name user-profile-link', :remote => true
         %span.tweet-full-name= list.category.pretty_name
       .tweet-row
         .list-description.tweet-text= list[:description]
       .tweet-row
         %a.tweet-timestamp.list-due-date
           %span._timestamp= list[:due_at]
+      .tweet-row
+        %div{:id => "list-#{list.id}-details"}
