@@ -1,3 +1,8 @@
+:javascript
+  jQuery(function() {
+    jQuery('#list-item-#{list_item.id}-description').hide();
+  });
+
 .list-item.stream-item
   .stream-item-content.tweet.stream-tweet
     .tweet-image
@@ -6,6 +11,6 @@
     .tweet-content
       .tweet-row
         %span.list-title.tweet-user-name= list_item.name
-      .tweet-row
+      .tweet-row{:id => "list-item-#{list_item.id}-description"}
         .list-description.tweet-text= list_item.description
         
