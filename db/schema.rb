@@ -10,12 +10,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110417191647) do
+ActiveRecord::Schema.define(:version => 20110417204405) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.string   "icon_filename"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "list_items", :force => true do |t|
+    t.string   "name"
+    t.integer  "list_id"
+    t.text     "description"
+    t.datetime "due_at"
+    t.integer  "status"
     t.integer  "created_by"
     t.integer  "updated_by"
     t.datetime "created_at"

@@ -1,2 +1,13 @@
-%div Hello!
-%div= "List: #{@list.inspect}"
+.component
+  %h2= @list.name
+
+  - @list.list_items.each do |list_item|
+    .list-item.stream-item
+      .stream-item-content.tweet.stream-tweet
+        .tweet-image
+          %img.tweet-profile-image{:src => "/images/categories/#{@list.category.icon_filename}", :width => 48, :height => 48}
+        .tweet-content
+          .tweet-row
+            %span.list-title.tweet-user-name= list_item.name
+          .tweet-row
+            .list-description.tweet-text= list_item.description
