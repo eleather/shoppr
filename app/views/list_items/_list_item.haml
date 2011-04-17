@@ -2,10 +2,6 @@
   .float-right {
     float: right;
   }
-  
-  .clear-both {
-    clear: both
-  }
 
 :javascript
   jQuery(function() {
@@ -25,7 +21,8 @@
     .tweet-content
       .tweet-row
         %span.list-item-name.tweet-screen-name= list_item.name
-        %span.ui-icon.ui-icon-document.float-right{:id => "list-item-#{list_item.id}-description-toggle"}
+        - if list_item.description and !list_item.description.blank?
+          %span.ui-icon.ui-icon-document.float-right{:id => "list-item-#{list_item.id}-description-toggle"}
       .tweet-row{:id => "list-item-#{list_item.id}-description"}
         .list-description.tweet-text= list_item.description
         

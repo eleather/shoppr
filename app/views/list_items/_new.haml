@@ -1,0 +1,44 @@
+- list_item ||= ListItem.new(:list_id => list_id)
+
+:css
+  #new-list-item-form-main {
+    padding: 5px;
+  }
+
+  label {
+    padding-right: 5px;
+  }
+  
+:javascript
+  jQuery(function() {
+    jQuery('#new-list-item-form-more').hide();
+    
+    jQuery('#new-list-item-form-more-toggle')
+      .bind('click', function() {
+        jQuery('#new-list-item-form-more').toggle();
+      });
+      
+    jQuery('#new_list_item')
+      .bind('ajax:complete', function(et, e) {
+        jQuery('##{id_to_append}').append(e.responseText);
+      });
+  });
+
+.list-item.stream-item
+  .stream-item-content.tweet.stream-tweet
+    .tweet-row 
+      = form_for(list_item, :remote => true) do |f|
+        = f.hidden_field :list_id
+        #new-list-item-form-main
+          = f.text_field :name
+          %a#new-list-item-form-more-toggle [add details]
+          = f.submit 'Create'
+        #new-list-item-form-more
+          %table{:padding => 4}
+            %tr
+              %td= f.label :due
+              %td= f.datetime_select :due_at, :include_blank => true
+            %tr
+              %td= f.label :description
+              %td= f.text_area :description, :rows => 3
+          

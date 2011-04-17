@@ -1,5 +1,11 @@
 class ListItemsController < ApplicationController
   
+  def create
+    @list_item = ListItem.create(params[:list_item])
+    
+    render @list_item
+  end
+  
   def toggle_completion
     @list_item = ListItem.find(params[:id])
     

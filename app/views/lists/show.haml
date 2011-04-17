@@ -1,4 +1,7 @@
-.component
+#list-contents.component
   %h2= @list.name
 
-  = render @list.list_items
+  #list-items
+    = render @list.list_items
+  
+  = render :partial => 'list_items/new', :locals => {:list_id => @list.id, :id_to_append => 'list-items'}
