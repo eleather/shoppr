@@ -1,7 +1,11 @@
 Shoppr::Application.routes.draw do
   resources :lists
   
-  resources :list_items
+  resources :list_items do
+    member do
+      get 'toggle_completion'
+    end
+  end
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

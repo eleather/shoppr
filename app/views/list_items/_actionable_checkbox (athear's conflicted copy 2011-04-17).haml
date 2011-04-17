@@ -1,0 +1,10 @@
+:javascript
+  jQuery(function() {
+    jQuery('#list-item-#{list_item.id}-checkbox')
+      .bind('click, function(et, e) {
+        jQuery('##{id_to_replace}').html(e.responseText);
+      });
+  });
+
+%a{:href => toggle_completion_list_item_path(list_item, :id_to_replace => id_to_replace), 'data-remote' => 'true'}
+  %img.tweet-profile-image{:src => "/images/checkbox_#{list_item.completed ? "" : "un"}checked.png", :width => 32, :height => 32}

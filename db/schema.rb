@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20110417204405) do
     t.integer  "list_id"
     t.text     "description"
     t.datetime "due_at"
-    t.integer  "status"
+    t.boolean  "completed"
     t.integer  "created_by"
     t.integer  "updated_by"
     t.datetime "created_at"

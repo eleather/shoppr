@@ -1,0 +1,11 @@
+.list-item.stream-item
+  .stream-item-content.tweet.stream-tweet
+    .tweet-image
+      %span{:id => "list-item-#{list_item.id}-checkbox"}
+        = render :partial => 'list_items/actionable_checkbox', :locals => {:list_item => list_item, :id_to_replace => "list-item-#{list_item.id}-checkbox"}
+    .tweet-content
+      .tweet-row
+        %span.list-title.tweet-user-name= list_item.name
+      .tweet-row
+        .list-description.tweet-text= list_item.description
+        
