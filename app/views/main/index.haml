@@ -1,5 +1,6 @@
 - content_for :left_content do
-  = @lists.inspect
+  - @lists.each do |list|
+    .list{:style => 'border-bottom: solid 1px pink; padding: 5px'}= link_to list[:name], "lists/#{list[:name]}"
   
 - content_for :right_content do
   Goodbye
