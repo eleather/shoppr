@@ -1,6 +1,20 @@
+:css
+  .float-right {
+    float: right;
+  }
+  
+  .clear-both {
+    clear: both
+  }
+
 :javascript
   jQuery(function() {
     jQuery('#list-item-#{list_item.id}-description').hide();
+    
+    jQuery('#list-item-#{list_item.id}-description-toggle')
+      .click(function() {
+        jQuery('#list-item-#{list_item.id}-description').toggle();
+      });
   });
 
 .list-item.stream-item
@@ -10,7 +24,8 @@
         = render :partial => 'list_items/actionable_checkbox', :locals => {:list_item => list_item, :id_to_replace => "list-item-#{list_item.id}-checkbox"}
     .tweet-content
       .tweet-row
-        %span.list-title.tweet-user-name= list_item.name
+        %span.list-item-name.tweet-screen-name= list_item.name
+        %span.ui-icon.ui-icon-document.float-right{:id => "list-item-#{list_item.id}-description-toggle"}
       .tweet-row{:id => "list-item-#{list_item.id}-description"}
         .list-description.tweet-text= list_item.description
         
