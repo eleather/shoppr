@@ -1,5 +1,6 @@
 - content_for :left_content do
-  = render @lists
+  #lists= render @lists
+  = render :partial => 'lists/new', :locals => {:id_to_append => 'lists'}
   
 - content_for :right_content do
   .component

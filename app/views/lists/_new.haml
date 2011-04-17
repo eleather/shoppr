@@ -1,9 +1,9 @@
-- list_item ||= ListItem.new(:list_id => list_id)
+- list ||= List.new()
 
 :css
-  #new-list-item-form-main {
+  #new-list-form-main {
     padding: 5px;
-    text-align: center;
+    text-align: center
   }
 
   label {
@@ -12,34 +12,35 @@
   
 :javascript
   jQuery(function() {
-    jQuery('#new-list-item-form-more').hide();
+    jQuery('#new-list-form-more').hide();
     
-    jQuery('#new-list-item-form-more-toggle')
+    jQuery('#new-list-form-more-toggle')
       .bind('click', function() {
-        jQuery('#new-list-item-form-more').toggle();
+        jQuery('#new-list-form-more').toggle();
       });
       
-    jQuery('#new_list_item')
+    jQuery('#new_list')
       .bind('ajax:complete', function(et, e) {
         jQuery('##{id_to_append}').append(e.responseText);
       });
   });
 
-.list-item.stream-item
+.list.stream-item
   .stream-item-content.tweet.stream-tweet
     .tweet-row 
-      = form_for(list_item, :remote => true) do |f|
-        = f.hidden_field :list_id
-        #new-list-item-form-main
+      = form_for(list, :remote => true) do |f|
+        #new-list-form-main
           = f.text_field :name
-          %a#new-list-item-form-more-toggle [add details]
+          %a#new-list-form-more-toggle [add details]
           = f.submit 'Create'
-        #new-list-item-form-more
+        #new-list-form-more
           %table
+            %tr
+              %td= f.label :category
+              %td= f.select :category_id, Category.all.sort_by(&:name).map { |c| [c.name, c.id] }, :include_blank => true
             %tr
               %td= f.label :due
               %td= f.datetime_select :due_at, :include_blank => true
             %tr
               %td= f.label :description
               %td= f.text_area :description, :rows => 3
-          

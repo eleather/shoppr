@@ -9,11 +9,13 @@
 .list.stream-item
   .stream-item-content.tweet.stream-tweet
     .tweet-image
-      %img.tweet-profile-image{:src => "/images/categories/#{list.category.icon_filename}", :width => 48, :height => 48}
+      - if list.category and list.category.icon_filename
+        %img.tweet-profile-image{:src => "/images/categories/#{list.category.icon_filename}", :width => 48, :height => 48}
     .tweet-content
       .tweet-row
         %span.list-title.tweet-user-name= link_to list.name, list, :id => "list-#{list.id}-link", :class => 'tweet-screen-name user-profile-link', :remote => true
-        %span.tweet-full-name= list.category.pretty_name
+        - if list.category
+          %span.tweet-full-name= list.category.pretty_name
       .tweet-row
         .list-description.tweet-text= list[:description]
       .tweet-row
