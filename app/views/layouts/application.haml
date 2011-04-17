@@ -1,3 +1,10 @@
+:css
+  .shadowed {
+    -moz-box-shadow: 5px 5px 5px #ccc;
+    -webkit-box-shadow: 5px 5px 5px #ccc;
+    box-shadow: 5px 5px 5px #ccc;
+  }
+
 %html
   %head
     %title Shoppr
@@ -5,7 +12,9 @@
     = javascript_include_tag :defaults
     = csrf_meta_tag
 
-  %body
-    = yield(:left_content)
-    = yield(:right_content)
+  %body{:style => 'width: 700px; margin: auto; padding: 10px; background: light grey'}
+    #left_content.shadowed{:style => 'position: relative; z-index: 100; float: left; width: 300px; border: solid 1px grey; border-radius: 5px; padding: 10px; background: white'}
+      = yield(:left_content)
+    #right_content{:style => 'position: relative; float: left; width: 300px; margin: 0px 0px 0px -5px; border-radius: 5px; padding: 10px 10px 10px 20px; background: grey'}
+      = yield(:right_content)
 
