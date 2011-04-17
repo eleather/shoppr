@@ -45,9 +45,9 @@
       #page-outer
         #page-container{:style => 'background-color: lightgreen;'}
           %div
-            .main-content
+            #left_content.main-content
               = yield(:left_content)
-            .dashboard
+            #right_content.dashboard
               = yield(:right_content)
             #details-pane-outer
               .details-pane-shell
