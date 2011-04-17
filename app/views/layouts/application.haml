@@ -1,20 +1,55 @@
 :css
-  .shadowed {
-    -moz-box-shadow: 5px 0px 5px #ccc;
-    -webkit-box-shadow: 5px 0px 5px #ccc;
-    box-shadow: 5px 0px 5px #ccc;
-  }
+
 
 %html
   %head
     %title Shoppr
     = stylesheet_link_tag :all
+    = stylesheet_link_tag 'https://si2.twimg.com/a/1302724321/phoenix/css/phoenix.bundle.css'
     = javascript_include_tag :defaults
     = csrf_meta_tag
 
-  %body{:style => 'width: 700px; margin: auto; padding-top: 10px; background: pink'}
-    #left_content.shadowed{:style => 'position: relative; z-index: 100; float: left; width: 300px; height: 100%; border: solid 1px pink; border-radius: 5px; background: white'}
-      = yield(:left_content)
-    #right_content{:style => 'position: relative; float: left; width: 300px; height: 100%; margin: 0px 0px 0px -5px; border-radius: 5px; padding: 10px 10px 10px 20px; background: lightgrey'}
-      = yield(:right_content)
+  %body.user-style-twttr{:style => 'background-image: none'}
+    #doc
+      #top-stuff
+        #banners{:style => 'clear:both;'}
+        #top-bar-outer
+          #top-bar-bg
+          #top-bar
+            #top-bar-inside
+              #static-links
+                #logo
+                  %a{:href => '/'} Twitter
+                #global-nav
+                  %ul
+                    %li#global-nav-home
+                      %a{:href => '/'} Home
+                #sections
+              .active-links
+                #session.loggedin
+                  %a.profile-links{:href => '#'}
+                    #profile-image
+                      %img{:src => 'https://si0.twimg.com/profile_images/251068501/India_233_normal.JPG'}
+                  %span#screen-name eleather
+                  .dropdown
+                    %ul.user-dropdown
+                      %li
+                        %a{:href => '/settings/account'} Settings
+                      %li
+                        %a{:href => 'http://support.twitter.com'} Help
+                %span.vr
+                %a#new-tweet{:title => 'New Tweet'}
+                  %span New Tweet
+          #message-drawer
+
+      #page-outer
+        #page-container{:style => 'background-color: lightgreen;'}
+          %div
+            .main-content
+              = yield(:left_content)
+            .dashboard
+            #details-pane-outer
+              .details-pane-shell
+                .details-pane
+
 

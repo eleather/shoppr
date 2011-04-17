@@ -1,7 +1,22 @@
+:css
+  .list-description {
+    min-height: 20px;
+  }
+
 - content_for :left_content do
   - @lists.each do |list|
-    .list{:style => 'border-bottom: solid 1px pink; padding: 5px'}= link_to list[:name], "lists/#{list[:name]}"
+    .list.stream-item
+      .stream-item-content.tweet.stream-tweet
+        .tweet-image
+          %img.tweet-profile-image{:src => 'images/categories/Shoppingcart_128x128.png', :width => 48, :height => 48}
+        .tweet-content
+          .tweet-row
+            %span.list-title.tweet-user-name= link_to list[:name], "lists/#{list[:name]}", :class => 'tweet-screen-name user-profile-link'
+          .tweet-row
+            .list-description.tweet-text= list[:description]
+          .tweet-row
+            %a.tweet-timestamp.list-due-date
+              %span._timestamp= list[:due_at]
   
 - content_for :right_content do
   Goodbye
-  
