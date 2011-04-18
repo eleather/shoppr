@@ -9,7 +9,15 @@ class ListItemsController < ApplicationController
   def toggle_completion
     @list_item = ListItem.find(params[:id])
     
-    @list_item.update_attribute(:completed, !@list_item.completed)
+    puts @list_item.inspect
+    
+    if @list_item.completed?
+      @list_item.mark_incomplete
+    else
+      @list_item.mark_completed
+    end
+    
+    puts @list_item.inspect
     
     render :partial => 'list_items/actionable_checkbox', :locals => {:list_item => @list_item, :id_to_replace => "#{params[:id_to_replace]}"}
   end

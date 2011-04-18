@@ -6,6 +6,20 @@ class ListItem < ActiveRecord::Base
   end
   
   def completed?
-    self.completed_at and !self.completed_at.null?
+    completed_at and !completed_at.nil?
+  end
+  
+  def mark_completed
+    puts 'marking completed'
+    completed_at = Time.now
+    # self.completed_by = current_user.id
+    save!
+  end
+  
+  def mark_incomplete
+    puts 'marking incomplete'
+    completed_at = nil
+    completed_by = nil
+    save!
   end
 end

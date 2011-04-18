@@ -7,6 +7,6 @@ class List < ActiveRecord::Base
   end
   
   def completed?
-    self.completed_at and !self.completed_at.null?
+    self.completed_at and !self.completed_at.nil?
   end
 end
