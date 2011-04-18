@@ -10,16 +10,10 @@ class ListItem < ActiveRecord::Base
   end
   
   def mark_completed
-    puts 'marking completed'
-    completed_at = Time.now
-    # self.completed_by = current_user.id
-    save!
+    update_attributes(:completed_at => Time.now)
   end
   
   def mark_incomplete
-    puts 'marking incomplete'
-    completed_at = nil
-    completed_by = nil
-    save!
+    update_attributes(:completed_at => nil, :completed_by =>  nil)
   end
 end
