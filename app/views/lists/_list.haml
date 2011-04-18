@@ -25,3 +25,8 @@
           - else
             no due date
             
+- if @new_list
+  :javascript
+    jQuery(function() {
+      jQuery("#right-content").load('#{list_path(list)}');
+    });

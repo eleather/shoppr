@@ -7,6 +7,7 @@ class ListsController < ApplicationController
   
   def create
     @list = List.create(params[:list])
+    @new_list = true
     
     render @list
   end
