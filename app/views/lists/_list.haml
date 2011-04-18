@@ -20,4 +20,8 @@
         .list-description.tweet-text= list[:description]
       .tweet-row
         %a.tweet-timestamp.list-due-date
-          %span._timestamp= list[:due_at]
+          - if list.due_at
+            %span._timestamp= distance_of_time_in_words(Time.now, list.due_at)
+          - else
+            no due date
+            

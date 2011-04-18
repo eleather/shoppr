@@ -4,7 +4,7 @@ class CreateLists < ActiveRecord::Migration
       t.string :name
       t.integer :category_id
       t.text :description
-      t.integer :due_at
+      t.datetime :due_at
       t.integer :created_by
       t.integer :updated_by
 

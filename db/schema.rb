@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20110417204405) do
     t.string   "name"
     t.integer  "category_id"
     t.text     "description"
-    t.integer  "due_at"
+    t.datetime "due_at"
     t.integer  "created_by"
     t.integer  "updated_by"
     t.datetime "created_at"
