@@ -1,5 +1,9 @@
 Shoppr::Application.routes.draw do
-  resources :lists
+  resources :lists do
+    collection do
+      get 'lists_by_due_date'
+    end
+  end
   
   resources :list_items do
     member do

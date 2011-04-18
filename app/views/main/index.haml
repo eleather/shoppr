@@ -1,6 +1,18 @@
 - content_for :left_content do
-  #lists= render @lists.sort_by { |l| l.due_at ? l.due_at.to_i : (Time.now + 50.years).to_i}
-  = render :partial => 'lists/new', :locals => {:id_to_append => 'lists'}
+  :css
+    #lists-title {
+      padding: 10px;
+      text-align: center;
+    }
+    
+  :javascript
+    jQuery(function() {
+      jQuery('#lists-tabs').tabs();
+    });
+  
+  %h2#lists-title My Lists
+  - @lists = @lists.sort_by { |l| l.due_at ? l.due_at.to_i : (Time.now + 50.years).to_i }
+  = render 'lists/lists'
   
 - content_for :right_content do
   .component

@@ -1,9 +1,13 @@
 - list ||= List.new()
 
 :css
+  #new-list-title {
+    text-align: center;
+  }
+
   #new-list-form-main {
     padding: 5px;
-    text-align: center
+    text-align: center;
   }
 
   label {
@@ -27,6 +31,7 @@
 
 .list.stream-item
   .stream-item-content.tweet.stream-tweet
+    #new-list-title.tweet-screen-name New List
     .tweet-row 
       = form_for(list, :remote => true) do |f|
         #new-list-form-main
