@@ -1,0 +1,39 @@
+:css
+  label {
+    padding-right: 5px;
+  }
+  
+:javascript
+  jQuery(function() {
+    jQuery('#edit_list')
+      .bind('ajax:complete', function(et, e) {
+        jQuery('##{id_to_replace}').html(e.responseText); 
+      });
+    
+    jQuery('#list-edit-cancel-link')
+      .bind('ajax:complete', function(et, e) {
+        jQuery('#right-content').html(e.responseText); 
+      });
+  });
+
+.list.stream-item
+  .stream-item-content.tweet.stream-tweet
+    .tweet-row 
+      = form_for(list, :remote => true) do |f|   
+        %table
+          %tr
+            %td= f.label :name
+            %td= f.text_field :name
+          %tr
+            %td= f.label :category
+            %td= f.select :category_id, Category.all.sort_by(&:name).map { |c| [c.name, c.id] }, :include_blank => true
+          %tr
+            %td= f.label :due
+            %td= f.datetime_select :due_at, :include_blank => true
+          %tr
+            %td= f.label :description
+            %td= f.text_area :description, :rows => 3
+          %tr
+            %td{:colspan => 2}
+              = f.submit 'Update'
+              %span= link_to 'Cancel', list, :id => 'list-edit-cancel-link', :remote => true

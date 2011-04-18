@@ -1,12 +1,34 @@
-:javascript
-  jQuery(function() {
-    jQuery('#list-#{list.id}-link')
-      .bind("ajax:complete", function(et, e) {
-        jQuery('#right-content').html(e.responseText);
+.list.stream-item{:id => "list-#{list.id}"}
+  :javascript
+    jQuery(function() {
+      jQuery('#list-#{list.id}-link')
+        .bind('ajax:complete', function(et, e) {
+          jQuery('#right-content').html(e.responseText);
+        });
+      
+      
+      jQuery('#list-#{list.id}-edit-link')
+        .hide()
+        .bind('ajax:complete', function(et, e) {
+          jQuery('#right-content').html(e.responseText);
+        });
+    
+      jQuery('#list-#{list.id}')
+        .bind('mouseenter', function() {
+          jQuery('#list-#{list.id}-edit-link').show();
+        })
+        .bind('mouseleave', function() {
+          jQuery('#list-#{list.id}-edit-link').hide();
+        });
+    });
+  
+  - if @show_list
+    :javascript
+      jQuery(function() {
+        jQuery("#right-content").load('#{list_path(list)}');
       });
-  });
 
-.list.stream-item
+
   .stream-item-content.tweet.stream-tweet
     .tweet-image
       - if list.category and list.category.icon_filename
@@ -16,6 +38,7 @@
         %span.list-title.tweet-user-name= link_to list.name, list, :id => "list-#{list.id}-link", :class => 'tweet-screen-name user-profile-link', :remote => true
         - if list.category
           %span.tweet-full-name= list.category.pretty_name
+        %a.ui-icon.ui-icon-pencil.float-right{:id => "list-#{list.id}-edit-link", :href => edit_list_path(list, :id_to_replace => "list-#{list.id}"), 'data-remote' => 'true'}
       .tweet-row
         .list-description.tweet-text= list[:description]
       .tweet-row
@@ -25,8 +48,3 @@
           - else
             no due date
             
-- if @new_list
-  :javascript
-    jQuery(function() {
-      jQuery("#right-content").load('#{list_path(list)}');
-    });

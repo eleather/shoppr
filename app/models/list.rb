@@ -6,4 +6,7 @@ class List < ActiveRecord::Base
     @name || "List #{self.id}"
   end
   
+  def completed?
+    !self.completed_at.null?
+  end
 end

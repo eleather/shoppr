@@ -4,4 +4,8 @@ class ListItem < ActiveRecord::Base
   def pretty_name
     self.name || "List Item #{self.id}"
   end
+  
+  def completed?
+    !self.completed_at.null?
+  end
 end

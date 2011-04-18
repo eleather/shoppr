@@ -1,5 +1,5 @@
 - content_for :left_content do
-  #lists= render @lists
+  #lists= render @lists.sort_by { |l| l.due_at ? l.due_at.to_i : (Time.now + 50.years).to_i}
   = render :partial => 'lists/new', :locals => {:id_to_append => 'lists'}
   
 - content_for :right_content do

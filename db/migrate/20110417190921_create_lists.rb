@@ -7,6 +7,8 @@ class CreateLists < ActiveRecord::Migration
       t.datetime :due_at
       t.integer :created_by
       t.integer :updated_by
+      t.datetime :completed_at
+      t.datetime :completed_by
 
       t.timestamps
     end

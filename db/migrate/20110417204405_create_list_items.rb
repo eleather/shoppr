@@ -5,9 +5,10 @@ class CreateListItems < ActiveRecord::Migration
       t.integer :list_id
       t.text :description
       t.datetime :due_at
-      t.boolean :completed
       t.integer :created_by
       t.integer :updated_by
+      t.datetime :completed_at
+      t.integer :completed_by
 
       t.timestamps
     end
