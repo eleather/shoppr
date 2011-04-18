@@ -27,9 +27,10 @@ ActiveRecord::Schema.define(:version => 20110417204405) do
     t.integer  "list_id"
     t.text     "description"
     t.datetime "due_at"
-    t.boolean  "completed"
     t.integer  "created_by"
     t.integer  "updated_by"
+    t.datetime "completed_at"
+    t.integer  "completed_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,6 +42,8 @@ ActiveRecord::Schema.define(:version => 20110417204405) do
     t.datetime "due_at"
     t.integer  "created_by"
     t.integer  "updated_by"
+    t.datetime "completed_at"
+    t.datetime "completed_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
